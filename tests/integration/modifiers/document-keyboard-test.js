@@ -24,11 +24,11 @@ module('Integration | Modifier | document-keyboard', function (hooks) {
       ></div>
     `);
 
-    await triggerKeyEvent(document, 'keydown', 65);
-    await triggerKeyEvent(document, 'keydown', 68);
+    await triggerKeyEvent(document, 'keydown', 'A');
+    await triggerKeyEvent(document, 'keydown', 'D');
 
-    assert.ok(this.onCharacter.getCall(0).calledWithExactly('a'));
-    assert.ok(this.onCharacter.getCall(1).calledWithExactly('d'));
+    assert.ok(this.onCharacter.getCall(0).calledWithExactly('A'));
+    assert.ok(this.onCharacter.getCall(1).calledWithExactly('D'));
 
     await triggerKeyEvent(document, 'keydown', 'Enter');
 

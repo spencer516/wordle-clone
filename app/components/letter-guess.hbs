@@ -1,5 +1,6 @@
 <div
   data-test-letter-guess
+  data-test-letter-coordinates={{concat @row ',' @col}}
   class='
   text-white font-bold text-3xl aspect-square flex justify-center items-center
   {{
@@ -10,6 +11,7 @@
    {{if (eq @guessState 'wrong-location') 'bg-yellow-500'}}
    {{if (eq @guessState 'correct') 'bg-green-600'}}
   '
+  ...attributes
 >
   {{@letter}}
 </div>

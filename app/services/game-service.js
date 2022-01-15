@@ -12,6 +12,17 @@ export default class GameServiceService extends Service {
     this.localStorage.setItem(localStorageKey, game);
   }
 
+  resetGame(gameKey = this.currentGame?.gameKey) {
+    const game = {
+      gameKey,
+      guesses: [],
+    };
+
+    this.#updateGame(game);
+
+    return game;
+  }
+
   async fetchGame() {
     const request = await fetch('/api/get-current-game');
     const { gameKey } = await request.json();
@@ -21,14 +32,7 @@ export default class GameServiceService extends Service {
       return this.currentGame;
     }
 
-    const game = {
-      gameKey,
-      guesses: [],
-    };
-
-    this.#updateGame(game);
-
-    return game;
+    return this.resetGame(gameKey);
   }
 
   async makeGuess(guess) {
