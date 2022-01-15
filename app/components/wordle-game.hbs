@@ -20,150 +20,154 @@
 
 <div class=''>
   <div class='flex justify-center mb-1'>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      Q
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      W
-    </div>
-    <div
-      class='bg-zinc-700 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      E
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      R
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      T
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      Y
-    </div>
-    <div
-      class='bg-zinc-700 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      U
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      I
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      O
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      P
-    </div>
+    <KeyboardLetter
+      @letter='Q'
+      @status={{get this.letterStatus 'Q'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='W'
+      @status={{get this.letterStatus 'W'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='E'
+      @status={{get this.letterStatus 'E'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='R'
+      @status={{get this.letterStatus 'R'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='T'
+      @status={{get this.letterStatus 'T'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='Y'
+      @status={{get this.letterStatus 'Y'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='U'
+      @status={{get this.letterStatus 'U'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='I'
+      @status={{get this.letterStatus 'I'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='O'
+      @status={{get this.letterStatus 'O'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='P'
+      @status={{get this.letterStatus 'P'}}
+      @onClick={{this.onCharacter}}
+    />
   </div>
   <div class='flex justify-center mb-1'>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      A
-    </div>
-    <div
-      class='bg-green-600 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      S
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      D
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      F
-    </div>
-    <div
-      class='bg-yellow-500 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      G
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      H
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      J
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      K
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      L
-    </div>
+    <KeyboardLetter
+      @letter='A'
+      @status={{get this.letterStatus 'A'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='S'
+      @status={{get this.letterStatus 'S'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='D'
+      @status={{get this.letterStatus 'D'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='F'
+      @status={{get this.letterStatus 'F'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='G'
+      @status={{get this.letterStatus 'G'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='H'
+      @status={{get this.letterStatus 'H'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='J'
+      @status={{get this.letterStatus 'J'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='K'
+      @status={{get this.letterStatus 'K'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='L'
+      @status={{get this.letterStatus 'L'}}
+      @onClick={{this.onCharacter}}
+    />
   </div>
   <div class='flex justify-center mb-1'>
-    <div
+    <button
+      type='button'
       class='bg-zinc-400 uppercase box-border text-l font-bold text-white px-2 flex justify-center items-center rounded-md mx-0.5'
+      {{on 'click' this.onEnter}}
     >
       ENTER
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      Z
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      X
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      C
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      V
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      B
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      N
-    </div>
-    <div
-      class='bg-zinc-400 uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5'
-    >
-      M
-    </div>
-    <div
+    </button>
+    <KeyboardLetter
+      @letter='Z'
+      @status={{get this.letterStatus 'Z'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='X'
+      @status={{get this.letterStatus 'X'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='C'
+      @status={{get this.letterStatus 'C'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='V'
+      @status={{get this.letterStatus 'V'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='B'
+      @status={{get this.letterStatus 'B'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='N'
+      @status={{get this.letterStatus 'N'}}
+      @onClick={{this.onCharacter}}
+    />
+    <KeyboardLetter
+      @letter='M'
+      @status={{get this.letterStatus 'M'}}
+      @onClick={{this.onCharacter}}
+    />
+    <button
+      type='button'
       class='bg-zinc-400 uppercase box-border text-l font-bold text-white px-2 flex justify-center items-center rounded-md mx-0.5'
+      {{on 'click' this.onDelete}}
     >
       DEL
-    </div>
+    </button>
   </div>
 </div>
 <button class='text-zinc-600' type='button' {{on 'click' this.reset}}>

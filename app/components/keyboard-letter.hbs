@@ -1,0 +1,13 @@
+<button
+  type='button'
+  class='
+  uppercase box-border text-l font-bold text-white w-10 flex justify-center items-center aspect-[4/5] rounded-md mx-0.5
+  {{unless @status 'bg-zinc-400'}}
+   {{if (eq @status 'incorrect') 'bg-zinc-700'}}
+   {{if (eq @status 'wrong-location') 'bg-yellow-500'}}
+   {{if (eq @status 'correct') 'bg-green-600'}}
+  '
+  {{on 'click' (fn @onClick @letter)}}
+>
+  {{@letter}}
+</button>

@@ -73,6 +73,25 @@ export default class WordleGameComponent extends Component {
     return this.gameIsComplete || this.guessWord.isRunning;
   }
 
+  get letterStatus() {
+    const letterMap = {};
+    const existingGuesses = this.game?.guesses ?? [];
+
+    for (const guess of existingGuesses) {
+      for (const { status, letter } of guess.letters) {
+        const mapStatus = letterMap[letter];
+
+        if (!mapStatus) {
+          letterMap[letter] = status;
+        } else if (mapStatus === 'wrong-location' && status === 'correct') {
+          letterMap[letter] = status;
+        }
+      }
+    }
+
+    return letterMap;
+  }
+
   @action
   reset() {
     this.game = this.gameService.resetGame();
