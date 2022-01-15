@@ -2,7 +2,7 @@ class LocalStorageStub {
   data = new Map();
 
   setItem(key, value) {
-    this.data.set(key, String(value));
+    this.data.set(key, value);
   }
 
   getItem(key) {
@@ -23,5 +23,6 @@ export default function setupLocalStorage(hooks) {
     const localStorageService = this.owner.lookup('service:local-storage');
     localStorageService.implementation = this.localStorageStub =
       new LocalStorageStub();
+    this.localStorage = localStorageService;
   });
 }

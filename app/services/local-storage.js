@@ -4,11 +4,12 @@ export default class LocalStorageService extends Service {
   implementation = localStorage;
 
   setItem(key, value) {
-    this.implementation.setItem(key, value);
+    this.implementation.setItem(key, JSON.stringify(value));
   }
 
   getItem(key) {
-    return this.implementation.getItem(key);
+    const value = this.implementation.getItem(key);
+    return value !== null && value !== undefined ? JSON.parse(value) : value;
   }
 
   removeItem(key) {
