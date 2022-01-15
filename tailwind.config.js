@@ -3,7 +3,7 @@
 const defaultTheme = require('tailwindcss/stubs/defaultConfig.stub');
 
 module.exports = {
-  content: ['./app/**/*.hbs'],
+  content: ['./app/**/*.{hbs,html}'],
   theme: {
     ...defaultTheme,
     extend: {},

@@ -19,6 +19,8 @@ module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     postcssOptions: {
       compile: {
+        enabled: true,
+        cacheInclude: [/.*\.hbs$/, /.*\.css$/, /.*\.html$/],
         plugins: [
           {
             module: require('postcss-import'),
@@ -26,7 +28,7 @@ module.exports = function (defaults) {
               path: ['node_modules'],
             },
           },
-          require('tailwindcss')('./tailwind.config.js'),
+          require('tailwindcss'),
           ...(isProduction ? [purgeCSS] : []),
         ],
       },
