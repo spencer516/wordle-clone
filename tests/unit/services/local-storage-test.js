@@ -7,9 +7,9 @@ module('Unit | Service | local-storage', function (hooks) {
   setupLocalStorage(hooks);
 
   test('can stub local storage implementation', function (assert) {
-    this.localStorageStub.setItem('foo', 'bar');
+    this.localStorageStub.setItem('foo', JSON.stringify({ foo: 'bar' }));
 
     const service = this.owner.lookup('service:local-storage');
-    assert.strictEqual(service.getItem('foo'), 'bar');
+    assert.deepEqual(service.getItem('foo'), { foo: 'bar' });
   });
 });

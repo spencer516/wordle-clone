@@ -3,6 +3,7 @@ import Resolver from 'ember-resolver';
 import loadInitializers from 'ember-load-initializers';
 import config from 'wordle-clone/config/environment';
 import { startTestServer, updateCurrentGame } from './utilities/test-server';
+import ENV from 'wordle-clone/config/environment';
 
 export default class App extends Application {
   modulePrefix = config.modulePrefix;
@@ -10,6 +11,8 @@ export default class App extends Application {
   Resolver = Resolver;
 }
 
-updateCurrentGame(startTestServer(), 'ad0b9a8', 'PANIC');
+if (ENV.environment === 'development') {
+  updateCurrentGame(startTestServer(), 'ad0b9a8', 'PANIC');
+}
 
 loadInitializers(App, config.modulePrefix);

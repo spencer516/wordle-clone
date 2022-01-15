@@ -2,25 +2,21 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+import sinon from 'sinon';
+import click from '@ember/test-helpers/dom/click';
 
 module('Integration | Component | keyboard-letter', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    this.onClick = sinon.stub();
 
-    await render(hbs`<KeyboardLetter />`);
+    await render(hbs`<KeyboardLetter @letter='F' @onClick={{this.onClick}} />`);
 
-    assert.dom(this.element).hasText('');
+    assert.dom('[data-test-keyboard-letter]').hasText('F');
 
-    // Template block usage:
-    await render(hbs`
-      <KeyboardLetter>
-        template block text
-      </KeyboardLetter>
-    `);
+    await click('[data-test-keyboard-letter]');
 
-    assert.dom(this.element).hasText('template block text');
+    assert.ok(this.onClick.getCall(0).calledWith('F'));
   });
 });

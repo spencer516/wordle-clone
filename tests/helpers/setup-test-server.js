@@ -10,4 +10,8 @@ export default function setupTestServer(hooks) {
     this.createGame = (gameKey, word) =>
       updateCurrentGame(this.testServer, gameKey, word);
   });
+
+  hooks.afterEach(function () {
+    this.testServer.shutdown();
+  });
 }

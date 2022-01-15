@@ -95,6 +95,7 @@ export default class WordleGameComponent extends Component {
   @action
   reset() {
     this.game = this.gameService.resetGame();
+    this.activeGuess = '';
   }
 
   @action
