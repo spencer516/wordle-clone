@@ -1,0 +1,15 @@
+<div
+  data-test-letter-guess
+  class='
+  text-white font-bold text-3xl aspect-square flex justify-center items-center
+  {{
+    if (and (not @letter) (eq @guessState 'pending')) 'border-2 border-zinc-700'
+  }}
+   {{if (and @letter (eq @guessState 'pending')) 'border-2 border-zinc-500'}}
+   {{if (eq @guessState 'incorrect') 'bg-zinc-700'}}
+   {{if (eq @guessState 'wrong-location') 'bg-yellow-500'}}
+   {{if (eq @guessState 'correct') 'bg-green-600'}}
+  '
+>
+  {{@letter}}
+</div>

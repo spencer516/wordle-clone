@@ -9,136 +9,35 @@
     </header>
 
     <div class='grid grid-rows-6 grid-cols-5 gap-2 my-5 w-3/5'>
-      <div
-        class='bg-yellow-500 text-white font-bold text-3xl aspect-square flex justify-center items-center'
-      >
-        G
-      </div>
-      <div
-        class='bg-zinc-700 text-white font-bold text-3xl aspect-square flex justify-center items-center'
-      >
-        U
-      </div>
-      <div
-        class='bg-zinc-700 text-white font-bold text-3xl aspect-square flex justify-center items-center'
-      >
-        E
-      </div>
-      <div
-        class='bg-zinc-700 text-white font-bold text-3xl aspect-square flex justify-center items-center'
-      >
-        S
-      </div>
-      <div
-        class='bg-green-600 text-white font-bold text-3xl aspect-square flex justify-center items-center'
-      >
-        S
-      </div>
-      <div
-        class='bg-yellow-500 text-white font-bold text-3xl aspect-square flex justify-center items-center'
-      >
-        G
-      </div>
-      <div
-        class='bg-zinc-700 text-white font-bold text-3xl aspect-square flex justify-center items-center'
-      >
-        U
-      </div>
-      <div
-        class='bg-zinc-700 text-white font-bold text-3xl aspect-square flex justify-center items-center'
-      >
-        E
-      </div>
-      <div
-        class='bg-zinc-700 text-white font-bold text-3xl aspect-square flex justify-center items-center'
-      >
-        S
-      </div>
-      <div
-        class='bg-green-600 text-white font-bold text-3xl aspect-square flex justify-center items-center'
-      >
-        S
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
-      <div
-        class='text-white font-bold text-3xl aspect-square flex justify-center items-center border-2 border-zinc-700'
-      >
-      </div>
+      <LetterGuess @letter='G' @guessState='wrong-location' />
+      <LetterGuess @letter='U' @guessState='incorrect' />
+      <LetterGuess @letter='E' @guessState='incorrect' />
+      <LetterGuess @letter='S' @guessState='incorrect' />
+      <LetterGuess @letter='S' @guessState='correct' />
+
+      <LetterGuess @letter='G' @guessState='wrong-location' />
+      <LetterGuess @letter='U' @guessState='incorrect' />
+      <LetterGuess @letter='E' @guessState='incorrect' />
+      <LetterGuess @letter='S' @guessState='incorrect' />
+      <LetterGuess @letter='S' @guessState='correct' />
+
+      <LetterGuess @letter='G' @guessState='pending' />
+      <LetterGuess @letter='U' @guessState='pending' />
+      <LetterGuess @letter='' @guessState='pending' />
+      <LetterGuess @letter='' @guessState='pending' />
+      <LetterGuess @letter='' @guessState='pending' />
+
+      <LetterGuess @letter='' @guessState='pending' />
+      <LetterGuess @letter='' @guessState='pending' />
+      <LetterGuess @letter='' @guessState='pending' />
+      <LetterGuess @letter='' @guessState='pending' />
+      <LetterGuess @letter='' @guessState='pending' />
+
+      <LetterGuess @letter='' @guessState='pending' />
+      <LetterGuess @letter='' @guessState='pending' />
+      <LetterGuess @letter='' @guessState='pending' />
+      <LetterGuess @letter='' @guessState='pending' />
+      <LetterGuess @letter='' @guessState='pending' />
     </div>
 
     <div class=''>
