@@ -3,7 +3,9 @@ import { tracked } from '@glimmer/tracking';
 import ENV from 'wordle-clone/config/environment';
 
 const API_BASE_URL =
-  ENV === 'production' ? 'https://to-be-determined' : 'http://localhost:3000';
+  ENV === 'production'
+    ? 'https://wordle-clone-api.vercel.app'
+    : 'http://localhost:3000';
 
 const localStorageKey = 'active-game-data';
 
