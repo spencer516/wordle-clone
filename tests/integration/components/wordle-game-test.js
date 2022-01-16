@@ -65,8 +65,6 @@ module('Integration | Component | wordle-game', function (hooks) {
 
     await waitFor('[data-test-success-toast]');
 
-    await waitFor('[data-test-letter-coordinates="1,0"].bg-green-600');
-
     assert.dom('[data-test-success-toast]').exists();
 
     await triggerKeyEvent(document, 'keydown', 'F');

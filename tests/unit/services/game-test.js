@@ -194,7 +194,7 @@ module('Unit | Service | game', function (hooks) {
     try {
       await this.service.makeGuess('NTWRD');
     } catch (e) {
-      assert.equal(
+      assert.strictEqual(
         e.reason,
         'INVALID_INPUT',
         'an error was thrown for a non-existent word'

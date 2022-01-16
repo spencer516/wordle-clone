@@ -4,6 +4,9 @@ import { service } from '@ember/service';
 import { action } from '@ember/object';
 import { task, dropTask, timeout } from 'ember-concurrency';
 import range from '../utilities/range';
+import ENV from 'wordle-clone/config/environment';
+
+const TOAST_DELAY = ENV.environment === 'test' ? 1 : 2000;
 
 export default class WordleGameComponent extends Component {
   @service game;
@@ -30,13 +33,13 @@ export default class WordleGameComponent extends Component {
 
       if (this.gameIsSolved) {
         this.userWonGame = true;
-        yield timeout(2000);
+        yield timeout(TOAST_DELAY);
         this.userWonGame = false;
       }
     } catch (e) {
       // Render an error for 3 seconds...
       this.guessHasError = true;
-      yield timeout(2000);
+      yield timeout(TOAST_DELAY);
       this.guessHasError = false;
     }
   }
