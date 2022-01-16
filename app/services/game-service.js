@@ -3,7 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import ENV from 'wordle-clone/config/environment';
 
 const API_BASE_URL =
-  ENV === 'production'
+  ENV.environment === 'production'
     ? 'https://wordle-clone-api.vercel.app'
     : 'http://localhost:3000';
 
