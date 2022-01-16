@@ -36,7 +36,8 @@ export default class GameServiceService extends Service {
   }
 
   async makeGuess(guess) {
-    const request = await fetch(`/api/make-guess/${guess}`);
+    const gameKey = this.currentGame.gameKey;
+    const request = await fetch(`/api/make-guess/${gameKey}/${guess}`);
     const { letters } = await request.json();
 
     this.currentGame.guesses.push({ letters });

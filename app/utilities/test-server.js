@@ -55,7 +55,7 @@ export function startTestServer() {
       return makeResponse({ gameKey: currentGame.gameKey });
     });
 
-    this.get('/api/make-guess/:guess', (request) => {
+    this.get('/api/make-guess/:gameKey/:guess', (request) => {
       const currentGame = gameForServer.get(this);
       assertGameExists(currentGame);
 
