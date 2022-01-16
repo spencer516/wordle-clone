@@ -1,5 +1,7 @@
 # wordle-clone
 
+View the app live at: https://wordle-clone-pi.vercel.app
+
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
 
