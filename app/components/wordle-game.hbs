@@ -18,6 +18,14 @@
   {{/each}}
 </div>
 
+{{#if this.guessHasError}}
+  <ErrorToast />
+{{/if}}
+
+{{#if this.userWonGame}}
+  <SuccessToast />
+{{/if}}
+
 <div class=''>
   <div class='flex justify-center mb-1'>
     <KeyboardLetter

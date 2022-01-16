@@ -2,13 +2,15 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { service } from '@ember/service';
 import { action } from '@ember/object';
-import { task, dropTask } from 'ember-concurrency';
+import { task, dropTask, timeout } from 'ember-concurrency';
 import range from '../utilities/range';
 
 export default class WordleGameComponent extends Component {
-  @service gameService;
+  @service game;
   @tracked activeGuess = '';
-  @tracked game;
+  @tracked gameState;
+  @tracked guessHasError = false;
+  @tracked userWonGame = false;
 
   constructor() {
     super(...arguments);
@@ -17,12 +19,26 @@ export default class WordleGameComponent extends Component {
 
   @task
   *loadGame() {
-    this.game = yield this.gameService.fetchGame();
+    this.gameState = yield this.game.fetchGame();
   }
 
   @dropTask
   *guessWord(word) {
-    this.game = yield this.gameService.makeGuess(word);
+    try {
+      this.gameState = yield this.game.makeGuess(word);
+      this.activeGuess = '';
+
+      if (this.gameIsSolved) {
+        this.userWonGame = true;
+        yield timeout(2000);
+        this.userWonGame = false;
+      }
+    } catch (e) {
+      // Render an error for 3 seconds...
+      this.guessHasError = true;
+      yield timeout(2000);
+      this.guessHasError = false;
+    }
   }
 
   get activeGuessLetters() {
@@ -37,7 +53,7 @@ export default class WordleGameComponent extends Component {
   }
 
   get allGuesses() {
-    const existingGuesses = this.game?.guesses ?? [];
+    const existingGuesses = this.gameState?.guesses ?? [];
     const guesses = [...existingGuesses];
 
     guesses.push(this.activeGuessLetters);
@@ -55,18 +71,21 @@ export default class WordleGameComponent extends Component {
     return guesses;
   }
 
+  get lastGuess() {
+    const existingGuesses = this.gameState?.guesses ?? [];
+    return existingGuesses[existingGuesses.length - 1];
+  }
+
+  get gameIsSolved() {
+    const { lastGuess } = this;
+    return (
+      lastGuess &&
+      lastGuess.letters.every((letter) => letter.status === 'correct')
+    );
+  }
+
   get gameIsComplete() {
-    const existingGuesses = this.game?.guesses ?? [];
-
-    if (existingGuesses.length === 6) return true;
-
-    const lastGuess = existingGuesses[existingGuesses.length - 1];
-
-    if (lastGuess) {
-      return lastGuess.letters.every((letter) => letter.status === 'correct');
-    }
-
-    return false;
+    return this.gameIsSolved || this.gameState?.guesses.length === 6;
   }
 
   get playSuspended() {
@@ -75,7 +94,7 @@ export default class WordleGameComponent extends Component {
 
   get letterStatus() {
     const letterMap = {};
-    const existingGuesses = this.game?.guesses ?? [];
+    const existingGuesses = this.gameState?.guesses ?? [];
 
     for (const guess of existingGuesses) {
       for (const { status, letter } of guess.letters) {
@@ -94,7 +113,7 @@ export default class WordleGameComponent extends Component {
 
   @action
   reset() {
-    this.game = this.gameService.resetGame();
+    this.gameState = this.game.resetGame();
     this.activeGuess = '';
   }
 
@@ -113,7 +132,7 @@ export default class WordleGameComponent extends Component {
   @action
   onEnter() {
     if (this.playSuspended) return;
-    this.guessWord.perform(this.activeGuess);
-    this.activeGuess = '';
+    // Catching as errors are handled internally by the task
+    this.guessWord.perform(this.activeGuess).catch(() => {});
   }
 }

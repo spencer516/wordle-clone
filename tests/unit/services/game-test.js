@@ -3,13 +3,13 @@ import { setupTest } from 'ember-qunit';
 import setupLocalStorage from '../../helpers/stub-local-storage';
 import setupTestServer from '../../helpers/setup-test-server';
 
-module('Unit | Service | game-service', function (hooks) {
+module('Unit | Service | game', function (hooks) {
   setupTest(hooks);
   setupLocalStorage(hooks);
   setupTestServer(hooks);
 
   hooks.beforeEach(function () {
-    this.service = this.owner.lookup('service:game-service');
+    this.service = this.owner.lookup('service:game');
   });
 
   test('brand-new game flow', async function (assert) {
@@ -184,5 +184,21 @@ module('Unit | Service | game-service', function (hooks) {
     });
   });
 
-  // TODO: Handle error cases...
+  test('guessing a non-existent word', async function (assert) {
+    assert.expect(1);
+
+    this.createGame('ba89d7g', 'ABBEY', ['CRAFT']);
+
+    await this.service.fetchGame();
+
+    try {
+      await this.service.makeGuess('NTWRD');
+    } catch (e) {
+      assert.equal(
+        e.reason,
+        'INVALID_INPUT',
+        'an error was thrown for a non-existent word'
+      );
+    }
+  });
 });

@@ -11,7 +11,7 @@ module('Integration | Component | wordle-game', function (hooks) {
   setupLocalStorage(hooks);
   setupTestServer(hooks);
 
-  test('it renders', async function (assert) {
+  test('standard game flow', async function (assert) {
     this.createGame('9as8d7', 'PANIC');
 
     await render(hbs`<WordleGame />`);
@@ -63,10 +63,32 @@ module('Integration | Component | wordle-game', function (hooks) {
 
     await triggerKeyEvent(document, 'keydown', 'Enter');
 
+    await waitFor('[data-test-success-toast]');
+
     await waitFor('[data-test-letter-coordinates="1,0"].bg-green-600');
+
+    assert.dom('[data-test-success-toast]').exists();
 
     await triggerKeyEvent(document, 'keydown', 'F');
 
     assert.dom('[data-test-letter-coordinates="2,0"]').hasNoText();
+  });
+
+  test('guessing an non-existent word', async function (assert) {
+    this.createGame('9as8d7', 'PANIC', ['PANIC', 'CHATS']);
+
+    await render(hbs`<WordleGame />`);
+
+    await triggerKeyEvent(document, 'keydown', 'P');
+    await triggerKeyEvent(document, 'keydown', 'I');
+    await triggerKeyEvent(document, 'keydown', 'L');
+    await triggerKeyEvent(document, 'keydown', 'E');
+    await triggerKeyEvent(document, 'keydown', 'D');
+
+    await triggerKeyEvent(document, 'keydown', 'Enter');
+
+    await waitFor('[data-test-error-toast]');
+
+    assert.dom('[data-test-error-toast]').exists();
   });
 });

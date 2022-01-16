@@ -1,14 +1,33 @@
 import Pretender from 'pretender';
 
+class APIError extends Error {
+  constructor({ status, error, reason }) {
+    super(error);
+    this.error = error;
+    this.status = status;
+    this.reason = reason;
+  }
+}
+
 class Game {
-  constructor(gameKey, word) {
+  constructor(gameKey, word, dictionary) {
     this.gameKey = gameKey;
     this.word = word;
     this.wordSet = new Set(word.split(''));
+    this.dictionary = Array.isArray(dictionary) ? new Set(dictionary) : null;
   }
 
   guessWord(guess) {
     const letters = [];
+
+    if (this.dictionary && !this.dictionary.has(guess)) {
+      throw new APIError({
+        status: 400,
+        error:
+          'The guessed word does not exist in the dictionary (https://dictionaryapi.dev).',
+        reason: 'INVALID_INPUT',
+      });
+    }
 
     for (const [idx, letter] of guess.split('').entries()) {
       const status =
@@ -28,8 +47,8 @@ class Game {
   }
 }
 
-function makeResponse(json) {
-  return [200, { 'Content-Type': 'application/json' }, JSON.stringify(json)];
+function makeResponse(json, status = 200) {
+  return [status, { 'Content-Type': 'application/json' }, JSON.stringify(json)];
 }
 
 function assertGameExists(currentGame) {
@@ -57,16 +76,22 @@ export function startTestServer() {
         assertGameExists(currentGame);
 
         const word = request.params.guess;
-        return makeResponse({
-          word,
-          letters: currentGame.guessWord(word),
-        });
+        try {
+          const letters = currentGame.guessWord(word);
+          return makeResponse({
+            word,
+            letters,
+          });
+        } catch (e) {
+          const { status, error, reason } = e;
+          return makeResponse({ error, reason }, status);
+        }
       }
     );
   });
 }
 
-export function updateCurrentGame(server, gameKey, word) {
-  const game = new Game(gameKey, word);
+export function updateCurrentGame(server, gameKey, word, dictionary) {
+  const game = new Game(gameKey, word, dictionary);
   gameForServer.set(server, game);
 }

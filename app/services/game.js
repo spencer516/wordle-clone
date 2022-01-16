@@ -9,7 +9,15 @@ const API_BASE_URL =
 
 const localStorageKey = 'active-game-data';
 
-export default class GameServiceService extends Service {
+class GameError extends Error {
+  constructor({ error, reason }) {
+    super(error);
+    this.error = error;
+    this.reason = reason;
+  }
+}
+
+export default class GameService extends Service {
   @service localStorage;
   @tracked currentGame = this.localStorage.getItem(localStorageKey);
 
@@ -46,7 +54,13 @@ export default class GameServiceService extends Service {
     const request = await fetch(
       `${API_BASE_URL}/api/make-guess/${gameKey}/${guess}`
     );
-    const { letters } = await request.json();
+    const json = await request.json();
+
+    if (request.status !== 200) {
+      throw new GameError(json);
+    }
+
+    const { letters } = json;
 
     this.currentGame.guesses.push({ letters });
     this.#updateGame();
