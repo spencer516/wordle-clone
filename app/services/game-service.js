@@ -1,5 +1,9 @@
 import Service, { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
+import ENV from 'wordle-clone/config/environment';
+
+const API_BASE_URL =
+  ENV === 'production' ? 'https://to-be-determined' : 'http://localhost:3000';
 
 const localStorageKey = 'active-game-data';
 
@@ -24,7 +28,7 @@ export default class GameServiceService extends Service {
   }
 
   async fetchGame() {
-    const request = await fetch('/api/get-current-game');
+    const request = await fetch(`${API_BASE_URL}/api/get-current-game`);
     const { gameKey } = await request.json();
 
     // The local game is the current game!
@@ -37,7 +41,9 @@ export default class GameServiceService extends Service {
 
   async makeGuess(guess) {
     const gameKey = this.currentGame.gameKey;
-    const request = await fetch(`/api/make-guess/${gameKey}/${guess}`);
+    const request = await fetch(
+      `${API_BASE_URL}/api/make-guess/${gameKey}/${guess}`
+    );
     const { letters } = await request.json();
 
     this.currentGame.guesses.push({ letters });

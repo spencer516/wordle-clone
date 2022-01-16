@@ -1,7 +1,4 @@
-import {
-  startTestServer,
-  updateCurrentGame,
-} from 'wordle-clone/utilities/test-server';
+import { startTestServer, updateCurrentGame } from './test-server';
 
 export default function setupTestServer(hooks) {
   hooks.beforeEach(function () {
