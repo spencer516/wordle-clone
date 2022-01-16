@@ -42,10 +42,10 @@ export default class WordleGameComponent extends Component {
 
     guesses.push(this.activeGuessLetters);
 
-    for (const _ of range(guesses.length, 6)) {
+    for (let i = guesses.length; i < 6; i++) {
       const letters = [];
 
-      for (const _ of range(0, 5)) {
+      for (let n = 0; n < 5; n++) {
         letters.push({ letter: '', status: 'pending' });
       }
 
